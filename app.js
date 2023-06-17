@@ -12,9 +12,17 @@ async function getData(city) {
     // fetch api
     const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=49e14a20272740269fe02834231606&q=${city}`, {mode: 'cors'});
     let weatherData = await response.json();
-
-    cityHtml.innerHTML = getName(weatherData) + ', ' + getRegion(weatherData)
-    icon.src = 'https:' + weatherData.current.condition.icon;
+    if (getName(weatherData) == getRegion(weatherData)) {
+        cityHtml.innerHTML = getName(weatherData) + ', ' + getCountry(weatherData)
+    }
+    else {
+        cityHtml.innerHTML = getName(weatherData) + ', ' + getRegion(weatherData)
+    }
+    icon.src = 'https:' + weatherData.current.condition.icon
+    tempF.innerHTML = getTempF(weatherData) + 'ºF'
+    localtime.innerHTML = getLocalTime(weatherData)
+    condition.innerHTML = getCondition(weatherData)
+    windSpeed.innerHTML = getWindSpeed(weatherData) + 'mph'
 
     console.log
     (
@@ -27,6 +35,10 @@ async function getData(city) {
     );
 }
 
+// city country
+function getCountry(weatherData) {
+    return weatherData.location.country
+}
 // city name
 function getName(weatherData) {
     return weatherData.location.name;
