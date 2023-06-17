@@ -23,16 +23,6 @@ async function getData(city) {
     localtime.innerHTML = getLocalTime(weatherData)
     condition.innerHTML = getCondition(weatherData)
     windSpeed.innerHTML = getWindSpeed(weatherData) + 'mph'
-
-    console.log
-    (
-        getName(weatherData), 
-        getRegion(weatherData),  
-        getLocalTime(weatherData), 
-        getTempF(weatherData), 
-        getCondition(weatherData),
-        getWindSpeed(weatherData),
-    );
 }
 
 // city country
@@ -71,3 +61,4 @@ searchBtn.addEventListener("click", () => {
     getData(inputBox.value)
 })
 
+getData('Jonesboro')
